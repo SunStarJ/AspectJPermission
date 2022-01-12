@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     ListGreeting(mainVM) {
+                        //打开相机操作
                         openCamera()
                     }
 
@@ -65,12 +66,13 @@ class MainActivity : AppCompatActivity() {
 
     @PermissionChecker([Manifest.permission.WRITE_EXTERNAL_STORAGE])
     fun openCamera() {
-        Log.e("getPermission", "getPermission: 123123123")
+        //同意请求
         //业务代码
     }
 
     @PermissionDine
     fun permissionDine() {
+        //请求失败
         Log.e("getPermission", "getPermission: error")
     }
 
