@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         Log.e("mac", "onCreate: ${MacAddressUtils.getMacAddress(this)}")
     }
 
-    @PermissionChecker([Manifest.permission.WRITE_EXTERNAL_STORAGE])
+    @PermissionChecker([Manifest.permission.WRITE_EXTERNAL_STORAGE])//权限数组
     fun openCamera() {
         //同意请求
         //业务代码
