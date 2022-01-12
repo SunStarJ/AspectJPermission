@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
@@ -46,7 +47,7 @@ class PermissionCheckAspectj {
                 if (joinPoint.`this` is Fragment) {
                     fragmentManager = (joinPoint.`this` as Fragment).childFragmentManager
                 } else {
-                    fragmentManager = (joinPoint.`this` as AppCompatActivity).supportFragmentManager
+                    fragmentManager = (joinPoint.`this` as FragmentActivity).supportFragmentManager
                 }
             }
         }
