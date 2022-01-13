@@ -11,7 +11,7 @@ build.gradle，务必添加阿里仓库,否则aspectj无法下载
         maven { url 'https://maven.aliyun.com/repository/google' }
         google()
         mavenCentral()
-
+        maven { url 'https://jitpack.io' }
     }
 
 dependencies {
@@ -36,6 +36,9 @@ plugins {
 aspectjx{
     enabled true
     exclude 'androidx','kotlin','com.google','com.squareup','com.alipay','org.apache'
+}
+dependencies {
+	implementation 'com.github.SunStarJ:AspectJPermission:0.0.1_beta'
 }
 
 ```
