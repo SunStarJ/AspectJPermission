@@ -2,10 +2,9 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-
+    id 'android-aspectjx'
 }
 
-apply plugin: 'android-aspectjx'
 
 android {
     compileSdk 31

@@ -7,6 +7,7 @@ import android.os.Handler
 import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,8 +19,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.toColor
 import androidx.databinding.Observable
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.LoadState
@@ -42,9 +46,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             MyApplicationTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
+                Surface(
+
+                ) {
                     ListGreeting(mainVM) {
                         //打开相机操作
                         openCamera()
@@ -89,16 +96,15 @@ fun ListGreeting(mainViewModel: MainViewModel, itemClick: () -> Unit) {
     val lazyItemList = mainViewModel.listData.collectAsLazyPagingItems()
 
     Scaffold(
-        topBar = {
-            TopAppBar(title = { Text(text = "Test") })
-        },
         floatingActionButton = {
             FloatingActionButton(onClick = {
 
             }, content = {
                 Icon(Icons.Filled.Add, contentDescription = null)
             })
-        }
+        },
+        backgroundColor = Color(android.R.attr.background),
+        contentColor = Color(android.R.attr.background),
     ) {
 
         when (lazyItemList.loadState.refresh) {
@@ -106,7 +112,7 @@ fun ListGreeting(mainViewModel: MainViewModel, itemClick: () -> Unit) {
                 SwipeRefresh(
                     state = rememberSwipeRefreshState(isRefreshing = isRefreshing),
                     onRefresh = { refresh() }) {
-                    LazyColumn {
+                    LazyColumn() {
                         itemsIndexed(lazyItemList) { index, data ->
                             Greeting(text = data ?: "", itemClick)
                         }
@@ -141,9 +147,11 @@ fun Greeting(text: String, itemClick: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .padding(horizontal = 20.dp, vertical = 10.dp)
+
             .clickable {
                 itemClick.invoke()
             }
+            .background(Color(android.R.attr.colorAccent)),
     ) {
 //        Image(
 //            painter = rememberImagePainter(
